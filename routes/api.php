@@ -1,0 +1,44 @@
+<?php
+
+use App\Http\Controllers\Api\HeroSectionController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "api" middleware group. Make something great!
+|
+*/
+Route::group(["prefix"=>"/hero-section"], function () {
+    Route::get('/', [HeroSectionController::class, 'index'])->name('hero-section.index');
+    Route::get('/{id}', [HeroSectionController::class, 'show'])->name('hero-section.show');
+    Route::post('/', [HeroSectionController::class, 'store'])->name('hero-section.store');
+    Route::put('/{id}', [HeroSectionController::class, 'update'])->name('hero-section.update');
+    Route::delete('/{id}', [HeroSectionController::class, 'destroy'])->name('hero-section.destroy');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/my-vision-mission"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'index'])->name('my-vision-mission.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'show'])->name('my-vision-mission.show');
+    Route::post('/', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'store'])->name('my-vision-mission.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'update'])->name('my-vision-mission.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'destroy'])->name('my-vision-mission.destroy');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/professional-appreciation"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'index'])->name('professional-appreciation.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'show'])->name('professional-appreciation.show');
+    Route::post('/', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'store'])->name('professional-appreciation.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'update'])->name('professional-appreciation.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'destroy'])->name('professional-appreciation.destroy');
+    // Add other routes as needed
+});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
