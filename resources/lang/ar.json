@@ -46,5 +46,11 @@
     "Group not found":" المجموعة غير موجودة",
     "Group and its cards deleted successfully":"تم حذف المجموعة وبطاقاتها بنجاح",
     "Group and cards created successfully":"تم إنشاء المجموعة وبطاقاتها بنجاح",
-    "":""
+    "Arabic description":" الوصف باللغة العربية",
+    "English description":" الوصف باللغة الإنجليزية",
+    "Item and cards created successfully":"تم إنشاء العنصر وبطاقاته بنجاح",
+    "Item and cards updated successfully":"تم تحديث العنصر وبطاقاته بنجاح",
+    "Item not found":" العنصر غير موجود",
+    "Item and its cards deleted successfully":"تم حذف العنصر وبطاقاته بنجاح",
+    "Arabic title":" العنوان باللغة العربية"
 }

@@ -38,6 +38,15 @@ Route::group(["prefix"=>"/professional-appreciation"], function () {
     Route::delete('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'destroy'])->name('professional-appreciation.destroy');
     // Add other routes as needed
 });
+
+Route::group(["prefix"=>"/adopted-methodology"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'index'])->name('adopted-methodology.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'show'])->name('adopted-methodology.show');
+    Route::post('/', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'store'])->name('adopted-methodology.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'update'])->name('adopted-methodology.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'destroy'])->name('adopted-methodology.destroy');
+    // Add other routes as needed
+});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
