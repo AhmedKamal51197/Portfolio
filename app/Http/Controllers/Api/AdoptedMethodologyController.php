@@ -24,6 +24,9 @@ class AdoptedMethodologyController extends Controller
 
     public function show($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $item = AdoptedMethodology::with('cards')->find($id);
 
         if (!$item) {
@@ -78,6 +81,9 @@ class AdoptedMethodologyController extends Controller
 
     public function update(AdoptedMethodologyRequest $request, $id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $data = $request->validated();
 
         DB::beginTransaction();
@@ -134,6 +140,9 @@ class AdoptedMethodologyController extends Controller
 
     public function destroy($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $item = AdoptedMethodology::find($id);
 
         if (!$item) {

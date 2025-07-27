@@ -52,5 +52,12 @@
     "Item and cards updated successfully":"تم تحديث العنصر وبطاقاته بنجاح",
     "Item not found":" العنصر غير موجود",
     "Item and its cards deleted successfully":"تم حذف العنصر وبطاقاته بنجاح",
-    "Arabic title":" العنوان باللغة العربية"
+    "Arabic title":" العنوان باللغة العربية",
+    "cards":"البطاقات",
+    "card position":"ترتيب البطاقة",
+    "card description (ar)" :"وصف البطاقة (بالعربية)",
+    "card description (en)" :"وصف البطاقة (بالإنجليزية)",
+    "card icon":"أيقونة البطاقة",
+    "Cannot delete the last card of the item": "لا يمكن حذف آخر بطاقة من العنصر",
+    "Card deleted successfully":"تم حذف البطاقة بنجاح"
 }

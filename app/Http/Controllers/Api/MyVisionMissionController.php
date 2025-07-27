@@ -20,6 +20,9 @@ class MyVisionMissionController extends Controller
     }
     public function show($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
             return $this->error(__('No data found'), 404);
@@ -43,6 +46,9 @@ class MyVisionMissionController extends Controller
     }
     public function update(MyVisionMissionRequest $request, $id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
             return $this->error(__('No data found'), 404);
@@ -62,6 +68,9 @@ class MyVisionMissionController extends Controller
     }
     public function destroy($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
             return $this->error(__('No data found'), 404);
