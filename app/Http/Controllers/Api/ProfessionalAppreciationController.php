@@ -24,6 +24,9 @@ class ProfessionalAppreciationController extends Controller
 
     public function show($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $group = ProfessionalAppreciationGroup::with('cards')->find($id);
         
         if (!$group) {
@@ -80,6 +83,9 @@ class ProfessionalAppreciationController extends Controller
 
     public function update(ProfessionalAppreciationRequest $request, $id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $data = $request->validated();
     
         DB::beginTransaction();
@@ -145,6 +151,9 @@ class ProfessionalAppreciationController extends Controller
 
     public function destroy($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $group = ProfessionalAppreciationGroup::find($id);
 
         if (!$group) {

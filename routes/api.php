@@ -47,6 +47,14 @@ Route::group(["prefix"=>"/adopted-methodology"], function () {
     Route::delete('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'destroy'])->name('adopted-methodology.destroy');
     // Add other routes as needed
 });
+Route::group(["prefix"=>"/training-program"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'index'])->name('training-program.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'show'])->name('training-program.show');
+    Route::post('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'store'])->name('training-program.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'update'])->name('training-program.update');
+    Route::delete('/{itemId}/card/{cardId}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'destroy'])->name('training-program.destroy');
+    // Add other routes as needed
+});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

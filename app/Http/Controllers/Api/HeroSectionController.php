@@ -25,6 +25,9 @@ class HeroSectionController extends Controller
     }
     public function show($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
             return $this->error(__('No data found'), 404);
@@ -48,6 +51,9 @@ class HeroSectionController extends Controller
     }
     public function update(HeroSectionRequest $request, $id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
             return $this->error(__('No data found'), 404);
@@ -69,6 +75,9 @@ class HeroSectionController extends Controller
     }
     public function destroy($id)
     {
+        if (!is_numeric($id)) {
+            return $this->failure(__('No data found'), 404);
+        }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
             return $this->error(__('No data found'), 404);
