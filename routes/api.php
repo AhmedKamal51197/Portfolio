@@ -55,6 +55,22 @@ Route::group(["prefix"=>"/training-program"], function () {
     Route::delete('/{itemId}/card/{cardId}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'destroy'])->name('training-program.destroy');
     // Add other routes as needed
 });
+Route::group(["prefix"=>"/current-project"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\CurrentProjectController::class, 'index'])->name('current-project.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'show'])->name('current-project.show');
+    Route::post('/', [\App\Http\Controllers\Api\CurrentProjectController::class, 'store'])->name('current-project.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'update'])->name('current-project.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'destroy'])->name('current-project.destroy');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/community-impact"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\CommunityImpactController::class, 'index'])->name('community-impact.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'show'])->name('community-impact.show');
+    Route::post('/', [\App\Http\Controllers\Api\CommunityImpactController::class, 'store'])->name('community-impact.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'update'])->name('community-impact.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'destroy'])->name('community-impact.destroy');
+    // Add other routes as needed
+});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

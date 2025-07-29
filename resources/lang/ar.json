@@ -59,5 +59,7 @@
     "card description (en)" :"وصف البطاقة (بالإنجليزية)",
     "card icon":"أيقونة البطاقة",
     "Cannot delete the last card of the item": "لا يمكن حذف آخر بطاقة من العنصر",
-    "Card deleted successfully":"تم حذف البطاقة بنجاح"
+    "Card deleted successfully":"تم حذف البطاقة بنجاح",
+    "images":"الصور",
+    "image":"الصورة"
 }
