@@ -9,6 +9,7 @@ trait ImageTrait
 
     protected function uploadImageToDirectory($imageFile, $model = '')
     {
+       
         $model     = Str::plural($model);
         $model     = Str::ucfirst($model);
         $path      = "/Images/$model";
@@ -25,9 +26,14 @@ trait ImageTrait
         {
             $this->deleteImageFromDirectory($model->icon, $directory);
         }
-        $this->deleteImageFromDirectory($model->image, $directory);
+        else{
+            
+            $this->deleteImageFromDirectory($model->image, $directory);
+        }
         return $this->uploadImageToDirectory($imageFile, $directory);
     }
+
+
 
 
 
@@ -53,6 +59,7 @@ trait ImageTrait
 
     protected function getImagePathFromDirectory($imageName = null, $directory = null, $defaultImage = 'default.svg')
     {
+       
         $directory = Str::plural($directory);
         $directory = Str::ucfirst($directory);
 
