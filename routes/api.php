@@ -71,6 +71,17 @@ Route::group(["prefix"=>"/community-impact"], function () {
     Route::delete('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'destroy'])->name('community-impact.destroy');
     // Add other routes as needed
 });
+
+Route::group(["prefix"=>"/instegram-banner"], function () {
+    Route::post('/', [\App\Http\Controllers\Api\InstegramBannerController::class, 'baanerStore'])->name('instegram-banner.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\InstegramBannerController::class, 'baanerUpdate'])->name('instegram-banner.update');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/four-broadcasts"],function(){
+    Route::get('/', [\App\Http\Controllers\Api\InstegramBannerController::class, 'fourBroadCasts'])->name('four-broadcasts.index');
+    Route::put('/{id}', [\App\Http\Controllers\Api\InstegramBannerController::class, 'updateFourBroadCasts'])->name('four-broadcasts.update');
+
+});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

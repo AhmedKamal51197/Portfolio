@@ -61,5 +61,9 @@
     "Cannot delete the last card of the item": "لا يمكن حذف آخر بطاقة من العنصر",
     "Card deleted successfully":"تم حذف البطاقة بنجاح",
     "images":"الصور",
-    "image":"الصورة"
+    "image":"الصورة",
+    "Instegram banner updated successfully":"تم تحديث بانر إنستجرام بنجاح",
+    "four-broadcasts retrieved successfully":"تم استرجاع أربع بثوث بنجاح",
+    "four-broadcasts updated successfully":" تم تحديث أربع بثوث بنجاح"
+
 }

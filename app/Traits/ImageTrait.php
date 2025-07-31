@@ -27,7 +27,7 @@ trait ImageTrait
             $this->deleteImageFromDirectory($model->icon, $directory);
         }
         else{
-            
+          
             $this->deleteImageFromDirectory($model->image, $directory);
         }
         return $this->uploadImageToDirectory($imageFile, $directory);
