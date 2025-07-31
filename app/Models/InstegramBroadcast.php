@@ -41,6 +41,10 @@ class InstegramBroadcast extends Model
     {
         return $this->attributes['banner_description_' . app()->getLocale()];
     }
+    public function setBroadcastLinkAttribute($broadcastLink)
+    {
+        $this->attributes['broadcast_link'] = $broadcastLink;
+    }
     
 
 }
