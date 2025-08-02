@@ -12,7 +12,8 @@ class ProfessionalAppreciationCardResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'description' => $this->description,
+            'description_ar' => $this->description_ar,
+            'description_en' => $this->description_en,
             'icon' => $this->getImagePathFromDirectory($this->icon, 'ProfessionalAppreciations'),
         ];
     }

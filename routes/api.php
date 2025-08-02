@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HeroSectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,37 @@ Route::group(["prefix"=>"/four-broadcasts"],function(){
     Route::put('/{id}', [\App\Http\Controllers\Api\InstegramBannerController::class, 'updateFourBroadCasts'])->name('four-broadcasts.update');
 
 });
+
+Route::group(["prefix"=>"/mail"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\MailController::class, 'index'])->name('mail.index');
+    Route::post('/', [\App\Http\Controllers\Api\MailController::class, 'store'])->name('mail.store');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\MailController::class, 'destroy'])->name('mail.destroy');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/privacy-policy"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
+    Route::put('/', [\App\Http\Controllers\Api\PrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
+    // Add other routes as needed
+});
+
+//terms and conditions
+Route::group(["prefix"=>"/terms-and-conditions"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\TermsConditionsController::class, 'index'])->name('terms-and-conditions.index');
+    Route::put('/', [\App\Http\Controllers\Api\TermsConditionsController::class, 'update'])->name('terms-and-conditions.update');
+    // Add other routes as needed
+});
+//social media
+Route::group(["prefix"=>"/social-media"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\SocialMediaController::class, 'index'])->name('social-media.index');
+    Route::put('/', [\App\Http\Controllers\Api\SocialMediaController::class, 'update'])->name('social-media.update');
+    // Add other routes as needed
+});
+
+Route::get('/passwordreset',[AuthController::class,'seeData']);
+Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
+Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);
+Route::post('/reset-password',[AuthController::class,'resetPassword']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

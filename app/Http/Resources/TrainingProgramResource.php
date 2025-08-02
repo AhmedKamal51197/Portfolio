@@ -20,8 +20,10 @@ class TrainingProgramResource extends JsonResource
         //  TrainigProgramCardResource::make(null); // ✅ returns null safely
          return [
              'id' => $this->id,
-             'title' => $this->title,
-             'description' => $this->description,
+             'title_ar' => $this->title_ar,
+             'title_en' => $this->title_en,
+             'description_ar' => $this->description_ar,
+             'description_en' => $this->description_en,
 
              'cards' => [
                  'first_card' =>   TrainigProgramCardResource::make($cards->get(1)),
