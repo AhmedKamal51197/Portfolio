@@ -19,7 +19,8 @@ class CurrentProjectResource extends JsonResource
 
          return [
              'id' => $this->id,
-             'title' => $this->title,
+             'title_ar' => $this->title_ar,
+             'title_en' => $this->title_en,
  
              'cards' => [
                  'first_card' => new CurrentProjectCardResource($cards->get(1)),

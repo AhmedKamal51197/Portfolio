@@ -477,7 +477,12 @@ return [
         'percentage' => 'الضريبة',
         'hot_line' => 'الخط الساخن',
         'garage_number' => 'رقم الجراج',
-        'position' => 'البطاقة'
+        'position' => 'البطاقة',
+        "client_name"=>"الاسم",
+        "client_email"=>"البريد الإلكتروني",
+        "client_phone"=>"رقم الهاتف",
+    
+        "client_country"=>"الدولة"
     ],
 
     'values' => [

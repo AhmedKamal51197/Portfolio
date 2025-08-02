@@ -15,7 +15,8 @@ class ComunityImpactResource extends JsonResource
         $cards = $this->cards->keyBy('position');
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title_ar' => $this->title_ar,
+            'title_en' => $this->title_en,
             'images'=> $this->images->map(fn($img) => $this->getImagePathFromDirectory($img->image, 'ComunityImpacts')),
             'cards' => [
                 'first_card' =>  new  ComunityImpactCardResource($cards->get(1)),

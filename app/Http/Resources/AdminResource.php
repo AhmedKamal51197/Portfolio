@@ -5,9 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TrainigProgramCardResource extends JsonResource
+class AdminResource extends JsonResource
 {
-    use \App\Traits\ImageTrait;
     /**
      * Transform the resource into an array.
      *
@@ -16,10 +15,9 @@ class TrainigProgramCardResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'description_ar' => $this->description_ar,
-            'description_en' => $this->description_en,
-            'icon' => $this->getImagePathFromDirectory($this->icon, 'TrainingPrograms'),
+            'admin' =>  $this->resource,
+            'access_token' => $this->accessToken,
+            'type' => 'bearer'
         ];
     }
 }

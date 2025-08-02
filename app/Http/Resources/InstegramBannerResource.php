@@ -17,10 +17,13 @@ class InstegramBannerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'title_ar' => $this->title_ar,
+            'title_en' => $this->title_en,
             'all_broadcast_link' => $this->all_broadcast_link,
-            'banner_title' => $this->banner_title,
-            'banner_description' => $this->banner_description,
+            'banner_title_ar' => $this->banner_title_ar,
+            'banner_title_en' => $this->banner_title_en,
+            'banner_description_ar' => $this->banner_description_ar,
+            'banner_description_en' => $this->banner_description_en,
             'broadcast_link' =>$this->broadcast_link,
             'image' => $this->getImagePathFromDirectory($this->image, 'InstegramBanners'),
 

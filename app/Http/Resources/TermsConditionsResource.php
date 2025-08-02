@@ -5,9 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TrainigProgramCardResource extends JsonResource
+class TermsConditionsResource extends JsonResource
 {
-    use \App\Traits\ImageTrait;
     /**
      * Transform the resource into an array.
      *
@@ -17,9 +16,10 @@ class TrainigProgramCardResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'description_ar' => $this->description_ar,
-            'description_en' => $this->description_en,
-            'icon' => $this->getImagePathFromDirectory($this->icon, 'TrainingPrograms'),
+            'title_ar' => $this->title_ar,
+            'title_en' => $this->title_en,
+            'content_ar' => $this->content_ar,
+            'content_en' => $this->content_en,
         ];
     }
 }

@@ -64,6 +64,30 @@
     "image":"الصورة",
     "Instegram banner updated successfully":"تم تحديث بانر إنستجرام بنجاح",
     "four-broadcasts retrieved successfully":"تم استرجاع أربع بثوث بنجاح",
-    "four-broadcasts updated successfully":" تم تحديث أربع بثوث بنجاح"
+    "four-broadcasts updated successfully":" تم تحديث أربع بثوث بنجاح",
+    "client_name":"الاسم",
+    "client_email":"البريد الإلكتروني",
+    "client_phone":"رقم الهاتف",
+
+    "client_country":"الدولة",
+    "The mail was sent successfully.":"تم إرسال البريد بنجاح.",
+    "The mail was deleted successfully.":"تم حذف البريد بنجاح.",
+    "An error occurred while processing your request, please try again":" حدث خطأ أثناء معالجة طلبك، يرجى المحاولة مرة أخرى",
+    "Privacy policy updated successfully":"تم تحديث سياسة الخصوصية بنجاح",
+    "Terms and Conditions updated successfully":"تم تحديث الشروط والأحكام بنجاح",
+    "Social media links updated successfully":"تم تحديث روابط وسائل التواصل الاجتماعي بنجاح",
+    "Email or password incorrect":"البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "User not found":"المستخدم غير موجود",
+    "Reset Link send successfully to your email":"تم إرسال رابط إعادة التعيين بنجاح إلى بريدك الإلكتروني",
+    "Password reset Successfully":"تم إعادة تعيين كلمة المرور بنجاح",
+    "Password change successfully":"تم تغيير كلمة المرور بنجاح",
+    "Password incorrect":"كلمة المرور غير صحيحة",
+    "User Not Found":"المستخدم غير موجود",
+    "Token expired":"انتهت صلاحية الرمز",
+    "Invalid token":"رمز غير صالح",
+    "ResetPassword link sent successfully":"تم إرسال رابط إعادة تعيين كلمة المرور بنجاح",
+    "Email & token verified successfully you can now reset your password":"تم التحقق من البريد الإلكتروني والرمز بنجاح، يمكنك الآن إعادة تعيين كلمة المرور"
+
+
 
 }
