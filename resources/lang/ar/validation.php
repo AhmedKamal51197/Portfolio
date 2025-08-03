@@ -481,8 +481,10 @@ return [
         "client_name"=>"الاسم",
         "client_email"=>"البريد الإلكتروني",
         "client_phone"=>"رقم الهاتف",
-    
-        "client_country"=>"الدولة"
+        "client_name_en"=>"الاسم بالإنجليزية",
+        "client_name_ar"=>"الاسم بالعربية",
+        "client_country"=>"الدولة",
+        "video"=>"الفيديو"
     ],
 
     'values' => [

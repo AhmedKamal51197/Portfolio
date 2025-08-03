@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Traits\ImageTrait;
 use App\Traits\RespondsWithHttpStatus;
+use App\Traits\VideoTrait;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests, ImageTrait,RespondsWithHttpStatus;
+    use AuthorizesRequests, ValidatesRequests, ImageTrait,VideoTrait,RespondsWithHttpStatus;
 }

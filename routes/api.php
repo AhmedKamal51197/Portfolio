@@ -109,6 +109,23 @@ Route::group(["prefix"=>"/social-media"], function () {
     // Add other routes as needed
 });
 
+Route::group(["prefix"=>"/evaluation"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\EvaluationController::class, 'index'])->name('evaluation.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\EvaluationController::class, 'show'])->name('evaluation.show');
+    Route::post('/', [\App\Http\Controllers\Api\EvaluationController::class, 'store'])->name('evaluation.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\EvaluationController::class, 'update'])->name('evaluation.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\EvaluationController::class, 'destroy'])->name('evaluation.destroy');
+    // Add other routes as needed
+});
+Route::group(["prefix"=>"/evaluation-without-video"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\EvaluationWithoutController::class, 'index'])->name('evaluation-without-video.index');
+    Route::get('/{id}', [\App\Http\Controllers\Api\EvaluationWithoutController::class, 'show'])->name('evaluation-without-video.show');
+    Route::post('/', [\App\Http\Controllers\Api\EvaluationWithoutController::class, 'store'])->name('evaluation-without-video.store');
+    Route::put('/{id}', [\App\Http\Controllers\Api\EvaluationWithoutController::class, 'update'])->name('evaluation-without-video.update');
+    Route::delete('/{id}', [\App\Http\Controllers\Api\EvaluationWithoutController::class, 'destroy'])->name('evaluation-without-video.destroy');
+    // Add other routes as needed
+});
+
 Route::get('/passwordreset',[AuthController::class,'seeData']);
 Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
 Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);
