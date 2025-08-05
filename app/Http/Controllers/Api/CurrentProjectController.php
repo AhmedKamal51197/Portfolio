@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CurrentProjectRequest;
+use App\Http\Requests\UpdateCurrentProjectRequest;
 use App\Http\Resources\CurrentProjectResource;
 use App\Models\CurrentProject;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -77,7 +78,7 @@ class CurrentProjectController extends Controller
         }
     }
 
-    public function update(CurrentProjectRequest $request, $id)
+    public function update(UpdateCurrentProjectRequest $request, $id)
     {
         if (!is_numeric($id)) {
             return $this->failure(__('No data found'), 404);
