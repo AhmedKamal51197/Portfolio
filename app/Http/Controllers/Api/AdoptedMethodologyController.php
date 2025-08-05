@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdoptedMethodologyRequest;
+use App\Http\Requests\UpdateAdoptedMethodologyRequest;
 use App\Http\Resources\AdoptedMethodologyResource;
 use App\Models\AdoptedMethodology;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -79,7 +80,7 @@ class AdoptedMethodologyController extends Controller
         }
     }
 
-    public function update(AdoptedMethodologyRequest $request, $id)
+    public function update(UpdateAdoptedMethodologyRequest $request, $id)
     {
         if (!is_numeric($id)) {
             return $this->failure(__('No data found'), 404);

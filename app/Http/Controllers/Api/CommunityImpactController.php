@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommunityImpactRequest;
+use App\Http\Requests\UpdateCommunityImpactRequest;
 use App\Http\Resources\ComunityImpactResource;
 use App\Models\CommunityImpact;
 use Illuminate\Http\Request;
@@ -88,7 +89,7 @@ class CommunityImpactController extends Controller
             return $this->failure(__('An error occurred while processing your request, please try again'), 500);
         }
     }
-    public function update(CommunityImpactRequest $request, $id)
+    public function update(UpdateCommunityImpactRequest $request, $id)
     {
         if (!is_numeric($id)) {
             return $this->failure(__('No data found'), 404);
