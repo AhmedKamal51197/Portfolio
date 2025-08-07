@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 class LandingPageController extends Controller
 {
     public function index()
-    {   $socialMedia = \App\Models\SocialMedia::first();
+    {   $socialMedia = \App\Models\SocialMedia::where('status',1)->get();
+        if ($socialMedia->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Social Media not found',
+            ], 404);
+        }
         
 
         $heroSection =\App\Http\Resources\HeroSectionResource::make(\App\Models\HeroSection::first()) ;
@@ -51,7 +57,7 @@ class LandingPageController extends Controller
             ], 404);
         }
         $cardsProfessionalAppreciation = collect($professionalAppreciation->cards)->keyBy('position');
-        
+        // dd($professionalAppreciation);
         $formatProfessionalAppreciation = [
             'title_ar' => $professionalAppreciation->title_ar,
             'title_en' => $professionalAppreciation->title_en,
@@ -147,10 +153,18 @@ class LandingPageController extends Controller
             'title_ar' => $currentProjects->title_ar,
             'title_en' => $currentProjects->title_en,
             'cards' => [
-                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(1)),
-                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(2)),
-                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(3)),
-                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(4)),
+                $cardsCurrentProjects->has(1)
+                ?  \App\Http\Resources\CurrentProjectCardResource::make($cardsCurrentProjects->get(1))
+                : null,
+                $cardsCurrentProjects->has(2)
+                ?  \App\Http\Resources\CurrentProjectCardResource::make($cardsCurrentProjects->get(2))
+                : null,
+                $cardsCurrentProjects->has(3)
+                ?  \App\Http\Resources\CurrentProjectCardResource::make($cardsCurrentProjects->get(3))
+                : null,
+                $cardsCurrentProjects->has(4)
+                ?  \App\Http\Resources\CurrentProjectCardResource::make($cardsCurrentProjects->get(4))
+                : null,
             ],
         ];
         $communityImpact = \App\Models\CommunityImpact::with('cards')->first();
@@ -164,14 +178,22 @@ class LandingPageController extends Controller
         $formatCommunityImpact = [
             'title_ar' => $communityImpact->title_ar,
             'title_en' => $communityImpact->title_en,
-            'description_ar' => $communityImpact->description_ar,
-            'description_en' => $communityImpact->description_en,
             'images' => $communityImpact->images->map(fn($img) => $this->getImagePathFromDirectory($img->image, 'CommunityImpacts')),
             'cards' => [
-                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(1)),
-                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(2)),
-                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(3)),
-                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(4)),
+                $cardsCommunityImpact->has(1)
+            ? new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(1))
+            : null,
+                    $cardsCommunityImpact->has(2)
+            ? new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(2))
+            : null,
+                    $cardsCommunityImpact->has(3)
+            ? new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(3))
+            : null,
+                    $cardsCommunityImpact->has(4)
+            ? new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(4))
+            : null,
+
+                
             ],
         ];
 
@@ -221,7 +243,7 @@ class LandingPageController extends Controller
 
         $instegramBannerFirst = \App\Http\Resources\InstegramBannerResource::make($instegramBanner);
         
-        $instegramBroadcasts = \App\Models\InstegramBroadcast::latest()->take(4)->get();
+        $instegramBroadcasts = \App\Models\InstegramBroadcast::orderBy('id','desc')->take(4)->get();
         
         if ($instegramBroadcasts->isEmpty()) {
             return response()->json([
@@ -231,14 +253,36 @@ class LandingPageController extends Controller
         }
         $fourBroadCasts = \App\Http\Resources\FourBroadCastsResource::collection($instegramBroadcasts);
         
-
+        $prvicayPolicy = \App\Models\PrivacyPolicy::first();
+        if (!$prvicayPolicy) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Privacy Policy not found',
+            ], 404);
+        }
+        $formatPrivacyPolicy = [
+            'title_ar' => $prvicayPolicy->title_ar,
+            'title_en' => $prvicayPolicy->title_en,
+            'content_ar' => $prvicayPolicy->content_ar,
+            'content_en' => $prvicayPolicy->content_en,
+        ];
+        $termsOfUse = \App\Models\TermsAndConditions::first();
+        if (!$termsOfUse) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terms of Use not found',
+            ], 404);
+        }
+        $formatTermsOfUse = [
+            'title_ar' => $termsOfUse->title_ar,
+            'title_en' => $termsOfUse->title_en,
+            'content_ar' => $termsOfUse->content_ar,
+            'content_en' => $termsOfUse->content_en,
+        ];
+        
         $landingPageData = [
             'header' => [
-                'socialMedia' => [
-                    'email' => $socialMedia->mail_link,
-                    'instagram' => $socialMedia->instagram_link,
-                    'whatsApp' => $socialMedia->whatsApp_link,
-                ],
+                'socialMedia' =>\App\Http\Resources\SocialMediaResource::collection($socialMedia),
             ],
             'heroSection' => $heroSection,
             'myVision' => $formatMyVision,
@@ -253,19 +297,12 @@ class LandingPageController extends Controller
             'fourBroadCasts' => $fourBroadCasts,
             'currentProjects' => $formatCurrentProjects,
             'footer'=>[
-                'contactMe' => [
-                    'email' => $socialMedia->mail_link,
-                    'whatsApp' => $socialMedia->whatsApp_link,
-                    
-                ],
-                'followMe' => [
-                    'facebook' => $socialMedia->facebook_link,
-                    'instagram' => $socialMedia->instagram_link,
-                    'telegram' => $socialMedia->telegram_link,
-                    'tictok' => $socialMedia->tictok_link,
-                    'youtube' => $socialMedia->youtube_link,
-                ],
+                'contactMe' => \App\Http\Resources\SocialMediaResource::collection($socialMedia),
+                'followMe' =>\App\Http\Resources\SocialMediaResource::collection($socialMedia) ,
+                'privacyPolicy' => $formatPrivacyPolicy,
+                'termsOfUse' => $formatTermsOfUse,
             ],
+            
         ];
         
         return response()->json([

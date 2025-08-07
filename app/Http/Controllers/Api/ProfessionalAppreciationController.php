@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProfessionalAppreciationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $groups = ProfessionalAppreciationGroup::with('cards')->get();

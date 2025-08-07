@@ -20,7 +20,7 @@ Route::get('/landing-page', [\App\Http\Controllers\Api\LandingPageController::cl
 Route::group(["prefix"=>"/hero-section"], function () {
     Route::get('/', [HeroSectionController::class, 'index'])->name('hero-section.index');
     Route::get('/{id}', [HeroSectionController::class, 'show'])->name('hero-section.show');
-    Route::post('/', [HeroSectionController::class, 'store'])->name('hero-section.store');
+    // Route::post('/', [HeroSectionController::class, 'store'])->name('hero-section.store');
     Route::put('/{id}', [HeroSectionController::class, 'update'])->name('hero-section.update');
     Route::delete('/{id}', [HeroSectionController::class, 'destroy'])->name('hero-section.destroy');
     // Add other routes as needed
@@ -28,7 +28,7 @@ Route::group(["prefix"=>"/hero-section"], function () {
 Route::group(["prefix"=>"/my-vision-mission"], function () {
     Route::get('/', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'index'])->name('my-vision-mission.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'show'])->name('my-vision-mission.show');
-    Route::post('/', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'store'])->name('my-vision-mission.store');
+    // Route::post('/', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'store'])->name('my-vision-mission.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'update'])->name('my-vision-mission.update');
     Route::delete('/{id}', [\App\Http\Controllers\Api\MyVisionMissionController::class, 'destroy'])->name('my-vision-mission.destroy');
     // Add other routes as needed
@@ -36,7 +36,7 @@ Route::group(["prefix"=>"/my-vision-mission"], function () {
 Route::group(["prefix"=>"/professional-appreciation"], function () {
     Route::get('/', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'index'])->name('professional-appreciation.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'show'])->name('professional-appreciation.show');
-    Route::post('/', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'store'])->name('professional-appreciation.store');
+    // Route::post('/', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'store'])->name('professional-appreciation.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'update'])->name('professional-appreciation.update');
     Route::delete('/{id}', [\App\Http\Controllers\Api\ProfessionalAppreciationController::class, 'destroy'])->name('professional-appreciation.destroy');
     // Add other routes as needed
@@ -45,7 +45,7 @@ Route::group(["prefix"=>"/professional-appreciation"], function () {
 Route::group(["prefix"=>"/adopted-methodology"], function () {
     Route::get('/', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'index'])->name('adopted-methodology.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'show'])->name('adopted-methodology.show');
-    Route::post('/', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'store'])->name('adopted-methodology.store');
+    // Route::post('/', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'store'])->name('adopted-methodology.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'update'])->name('adopted-methodology.update');
     Route::delete('/{id}', [\App\Http\Controllers\Api\AdoptedMethodologyController::class, 'destroy'])->name('adopted-methodology.destroy');
     // Add other routes as needed
@@ -53,7 +53,7 @@ Route::group(["prefix"=>"/adopted-methodology"], function () {
 Route::group(["prefix"=>"/training-program"], function () {
     Route::get('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'index'])->name('training-program.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'show'])->name('training-program.show');
-    Route::post('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'store'])->name('training-program.store');
+    // Route::post('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'store'])->name('training-program.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'update'])->name('training-program.update');
     Route::delete('/{itemId}/card/{cardId}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'destroy'])->name('training-program.destroy');
     // Add other routes as needed
@@ -61,7 +61,7 @@ Route::group(["prefix"=>"/training-program"], function () {
 Route::group(["prefix"=>"/current-project"], function () {
     Route::get('/', [\App\Http\Controllers\Api\CurrentProjectController::class, 'index'])->name('current-project.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'show'])->name('current-project.show');
-    Route::post('/', [\App\Http\Controllers\Api\CurrentProjectController::class, 'store'])->name('current-project.store');
+    // Route::post('/', [\App\Http\Controllers\Api\CurrentProjectController::class, 'store'])->name('current-project.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'update'])->name('current-project.update');
     Route::delete('/{id}', [\App\Http\Controllers\Api\CurrentProjectController::class, 'destroy'])->name('current-project.destroy');
     // Add other routes as needed
@@ -69,14 +69,15 @@ Route::group(["prefix"=>"/current-project"], function () {
 Route::group(["prefix"=>"/community-impact"], function () {
     Route::get('/', [\App\Http\Controllers\Api\CommunityImpactController::class, 'index'])->name('community-impact.index');
     Route::get('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'show'])->name('community-impact.show');
-    Route::post('/', [\App\Http\Controllers\Api\CommunityImpactController::class, 'store'])->name('community-impact.store');
+    // Route::post('/', [\App\Http\Controllers\Api\CommunityImpactController::class, 'store'])->name('community-impact.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'update'])->name('community-impact.update');
     Route::delete('/{id}', [\App\Http\Controllers\Api\CommunityImpactController::class, 'destroy'])->name('community-impact.destroy');
     // Add other routes as needed
 });
 
 Route::group(["prefix"=>"/instegram-banner"], function () {
-    Route::post('/', [\App\Http\Controllers\Api\InstegramBannerController::class, 'baanerStore'])->name('instegram-banner.store');
+    // Route::post('/', [\App\Http\Controllers\Api\InstegramBannerController::class, 'baanerStore'])->name('instegram-banner.store');
+    Route::get('/', [\App\Http\Controllers\Api\InstegramBannerController::class, 'index'])->name('instegram-banner.index');
     Route::put('/{id}', [\App\Http\Controllers\Api\InstegramBannerController::class, 'baanerUpdate'])->name('instegram-banner.update');
     // Add other routes as needed
 });
@@ -107,7 +108,7 @@ Route::group(["prefix"=>"/terms-and-conditions"], function () {
 //social media
 Route::group(["prefix"=>"/social-media"], function () {
     Route::get('/', [\App\Http\Controllers\Api\SocialMediaController::class, 'index'])->name('social-media.index');
-    Route::put('/', [\App\Http\Controllers\Api\SocialMediaController::class, 'update'])->name('social-media.update');
+    Route::put('/{id}', [\App\Http\Controllers\Api\SocialMediaController::class, 'update'])->name('social-media.update');
     // Add other routes as needed
 });
 
@@ -133,7 +134,7 @@ Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
 Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);
 Route::post('/reset-password',[AuthController::class,'resetPassword']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

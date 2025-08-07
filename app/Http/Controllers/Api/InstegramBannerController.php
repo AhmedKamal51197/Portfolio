@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\DB;
 
 class InstegramBannerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+    public function index()
+    {
+        $instegramBanners = InstegramBroadcast::first();
+        if (!$instegramBanners) {
+            return $this->failure(__('No data found'), 404);
+        }
+        return $this->success(
+            __('Instegram banners retrieved successfully'),
+           new InstegramBannerResource($instegramBanners)
+        );
+    }
 
     public function baanerStore(InstegramBannerRequest $request)
     {
@@ -64,7 +80,7 @@ class InstegramBannerController extends Controller
 
     public function fourBroadCasts()
     {
-        $instegramBanners = InstegramBroadcast::latest()->take(4)->get();
+        $instegramBanners = InstegramBroadcast::orderBy('id','desc')->take(4)->get();
         return $this->success(
             __('four-broadcasts retrieved successfully'),
             FourBroadCastsResource::collection($instegramBanners)

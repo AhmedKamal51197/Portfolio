@@ -2,11 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Traits\ImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SocialMediaResource extends JsonResource
 {
+    use ImageTrait;
     /**
      * Transform the resource into an array.
      *
@@ -15,13 +17,12 @@ class SocialMediaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'facebook_link' => $this->facebook_link,
-            'instagram_link'=> $this->instagram_link,
-            'whatsApp_link' => $this->whatsApp_link,
-            'telegram_link' => $this->telegram_link,
-            'tictok_link' => $this->tictok_link,
-            'youtube_link' => $this->youtube_link,
-            'mail_link' => $this->mail_link,
+            'id'=>$this->id,
+            'name_ar' => $this->name_ar,
+            'name_en' => $this->name_en,
+            'link' => $this->link,
+            'icon' => $this->getImagePathFromDirectory($this->icon,'SocialMedias'),
+
         ];
     }
 }

@@ -10,13 +10,11 @@ class SocialMedia extends Model
     use HasFactory;
     protected $table = 'social_medias';
     protected $fillable = [
-        'facebook_link',
-        'instagram_link',
-        'whatsApp_link',
-        'telegram_link',
-        'tictok_link',
-        'youtube_link',
-        'mail_link',
+        'name_ar',
+        'name_en',
+        'link',
+        'icon',
+        'status',
     ];
     protected $casts = [
         'created_at' => 'datetime',
@@ -26,4 +24,5 @@ class SocialMedia extends Model
         'created_at',
         'updated_at',
     ];
+    
 }

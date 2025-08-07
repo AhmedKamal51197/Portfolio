@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('social_medias', function (Blueprint $table) {
             $table->id();
-            $table->string('facebook_link')->nullable();
-            $table->string('instagram_link')->nullable();
-            $table->string('whatsApp_link')->nullable();
-            $table->string('telegram_link')->nullable();
-            $table->string('tictok_link')->nullable();
-            $table->string('youtube_link')->nullable();
-            $table->string('mail_link')->nullable();
+            $table->string('name_ar')->comment('Name of the social media platform');
+            $table->string('name_en')->comment('Name of the social media platform in English');
+            $table->string('link')->nullable()->comment('Link to the social media platform');
+            $table->string('icon')->nullable()->comment('Icon of the social media platform');
+            $table->integer('status')->default(1)->comment('Status of the social media platform, 1 for active, 0 for inactive');
             $table->timestamps();
         });
     }

@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class MailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $mails = Mail::paginate(10);

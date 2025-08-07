@@ -13,6 +13,10 @@ use PhpParser\Node\Expr\FuncCall;
 class HeroSectionController extends Controller
 {
   
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     
     public function index()
     {

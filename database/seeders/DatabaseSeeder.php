@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\HeroSection;
+use App\Models\PrivacyPolicy;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +21,24 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call([
+            // HeroSectionSeeder::class,
+            // MyVisionSeeder::class,
+            // MyMissionSeeder::class,
+            // ProfessionalAppreciationSeeder::class,
+            // AdoptedMethodologiesSeeder::class,
+            // TrainigProgramSeeder::class,
+            // CommunityImpactSeeder::class,
+            // EvaluationSeeder::class,
+            // EvaluationWithoutVideoSeeder::class,
+            // InstegramBannerSeeder::class,
+            // InstegramBroadCastsSeeder::class,
+            // CurrentProjectSeeder::class,
+            // MailSeeder::class,
+            // PrivacyPolicySeeder::class,
+            // TermConditionsSeeder::class,
+            SocialMediasSeeder::class,
+
+        ]);
     }
 }

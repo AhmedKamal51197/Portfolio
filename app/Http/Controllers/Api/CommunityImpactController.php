@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CommunityImpactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $items = CommunityImpact::with('cards', 'images')->get();

@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class EvaluationWithoutController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $evaluations = Evaluation::paginate(10);

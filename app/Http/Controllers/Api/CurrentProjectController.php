@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class CurrentProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $items = CurrentProject::with('cards')->get();

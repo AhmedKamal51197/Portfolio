@@ -12,9 +12,13 @@ use Illuminate\Http\Request;
 
 class EvaluationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
-        $evaluations = Evaluation::paginate(10);
+        $evaluations = Evaluation::whereNotNull('video')->paginate(10);
 
         if ($evaluations->isEmpty()) {
             return $this->failure(__('No data found'), 404);

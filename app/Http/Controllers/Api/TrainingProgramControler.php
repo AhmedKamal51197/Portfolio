@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class TrainingProgramControler extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         $items = TrainingProgram::with('cards')->get();

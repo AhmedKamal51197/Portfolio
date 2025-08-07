@@ -13,40 +13,50 @@ class SocialMediasSeeder extends Seeder
     public function run(): void
     {
         \App\Models\SocialMedia::create([
-            'name' => 'WhatsApp',
+            'name_en' => 'WhatsApp',
+            'name_ar' => 'واتساب',
             'link' => 'https://www.whatsapp.com',
+            'icon' => 'whatsapp.png',
         ]);
         \App\Models\SocialMedia::create([
-            'name' => 'Facebook',
+            'name_en' => 'Facebook',
+            'name_ar' => 'فيسبوك',
             'link' => 'https://www.facebook.com',
+            'icon' => 'facebook.png',
         ]);
-
-    
+        
 
         \App\Models\SocialMedia::create([
-            'name' => 'Instagram',
+            'name_en' => 'Instegram',
+            'name_ar' => 'انستجرام',
             'link' => 'https://www.instagram.com',
+            'icon' => 'instagram.png',
         ]);
 
         \App\Models\SocialMedia::create([
-            'name' => 'Telegram',
+            'name_en' => 'Telegram',
+            'name_ar' => 'تيليجرام',
             'link' => 'https://www.telegram.com',
+            'icon' => 'telegram.png',
         ]);
         \App\Models\SocialMedia::create([
-            'name' => 'LinkedIn',
-            'link' => 'https://www.linkedin.com',
-        ]);
-         \App\Models\SocialMedia::create([
-            'name' => 'YouTube',
-            'link' => 'https://www.youtube.com',
-        ]);
-        \App\Models\SocialMedia::create([
-            'name' => 'TikTok',
-            'link' => 'https://www.tiktok.com',
-        ]);
-        \App\Models\SocialMedia::create([
-            'name' => 'email',
+            'name_en' => 'Gmail',
+            'name_ar' => 'جيميل',
             'link' => 'https://www.gmail.com',
+            'icon' => 'gmail.png',
+        ]);
+        
+        \App\Models\SocialMedia::create([
+            'name_en' => 'TikTok',
+            'name_ar' => 'تيك توك',
+            'link' => 'https://www.tiktok.com',
+            'icon' => 'tiktok.png',
+        ]);
+        \App\Models\SocialMedia::create([
+            'name_en' => 'YouTube',
+            'name_ar' => 'يوتيوب',
+            'link' => 'https://www.youtube.com',
+            'icon' => 'youtube.png',
         ]);
 
 
