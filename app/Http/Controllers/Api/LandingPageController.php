@@ -1,0 +1,277 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+class LandingPageController extends Controller
+{
+    public function index()
+    {   $socialMedia = \App\Models\SocialMedia::first();
+        
+
+        $heroSection =\App\Http\Resources\HeroSectionResource::make(\App\Models\HeroSection::first()) ;
+        
+
+
+        $myVision = \App\Models\MyVisionMission::where('type','vision')->first();
+        if (!$myVision) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'My Vision not found',
+            ], 404);
+        }
+        $formatMyVision = [
+            'title_ar' => $myVision->title_ar,
+            'title_en' => $myVision->title_en,
+            'description_ar' => $myVision->description_ar,
+            'description_en' => $myVision->description_en,
+            'image' => $this->getImagePathFromDirectory($myVision->icon,'MyVisionMissions'),
+        ];
+        $myMission = \App\Models\MyVisionMission::where('type','mission')->first();
+        if (!$myMission) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'My Mission not found',
+            ], 404);
+        }
+        $formatMyMission = [
+            'title_ar' => $myMission->title_ar,
+            'title_en' => $myMission->title_en,
+            'description_ar' => $myMission->description_ar,
+            'description_en' => $myMission->description_en,
+            'image' => $this->getImagePathFromDirectory($myMission->icon,'MyVisionMissions'),
+        ];
+        $professionalAppreciation = \App\Models\ProfessionalAppreciationGroup::with('cards')->first();
+        if (!$professionalAppreciation) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Professional Appreciation not found',
+            ], 404);
+        }
+        $cardsProfessionalAppreciation = collect($professionalAppreciation->cards)->keyBy('position');
+        
+        $formatProfessionalAppreciation = [
+            'title_ar' => $professionalAppreciation->title_ar,
+            'title_en' => $professionalAppreciation->title_en,
+            'image' => $this->getImagePathFromDirectory($professionalAppreciation->image,'ProfessionalAppreciations'),
+            'cards'=> [
+                 new \App\Http\Resources\ProfessionalAppreciationCardResource($cardsProfessionalAppreciation->get(1)),
+                 new \App\Http\Resources\ProfessionalAppreciationCardResource($cardsProfessionalAppreciation->get(2)),
+                 new \App\Http\Resources\ProfessionalAppreciationCardResource($cardsProfessionalAppreciation->get(3)),
+            ],
+        ];
+        
+
+        $adoptedMethodology = \App\Models\AdoptedMethodology::with('cards')->first();
+        if (!$adoptedMethodology) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Adopted Methodology not found',
+            ], 404);
+        }
+        $cardsAdoptedMethodology = collect($adoptedMethodology->cards)->keyBy('position');
+        $formatAdoptedMethodology = [
+            'title_ar' => $adoptedMethodology->title_ar,
+            'title_en' => $adoptedMethodology->title_en,
+            'description_ar' => $adoptedMethodology->description_ar,
+            'description_en' => $adoptedMethodology->description_en,
+            'cards' => [
+                     new \App\Http\Resources\AdoptedMethodologyCardResource($cardsAdoptedMethodology->get(1)),
+                     new \App\Http\Resources\AdoptedMethodologyCardResource($cardsAdoptedMethodology->get(2)),
+                     new \App\Http\Resources\AdoptedMethodologyCardResource($cardsAdoptedMethodology->get(3)),
+                     new \App\Http\Resources\AdoptedMethodologyCardResource($cardsAdoptedMethodology->get(4)),
+                ],
+            
+        ];
+        // dd('ddd');
+       
+
+        $trainingPrograms = \App\Models\TrainingProgram::with('cards')->first();
+        if (!$trainingPrograms) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Training Programs not found',
+            ], 404);
+        }
+        $cardsTrainingPrograms = collect($trainingPrograms->cards)->keyBy('position');
+            $formatTrainingPrograms =[
+                'title_ar' => $trainingPrograms->title_ar,
+                    'title_en' => $trainingPrograms->title_en,
+                    'description_ar' => $trainingPrograms->description_ar,
+                    'description_en' => $trainingPrograms->description_en,
+                    'cards' => [
+                          $cardsTrainingPrograms->has(1)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(1))
+                        : null,
+                          $cardsTrainingPrograms->has(2)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(2))
+                        : null,
+                          $cardsTrainingPrograms->has(3)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(3))
+                        : null,
+                          $cardsTrainingPrograms->has(4)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(4))
+                        : null,
+                          $cardsTrainingPrograms->has(5)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(5))
+                        : null,
+                          $cardsTrainingPrograms->has(6)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(6))
+                        : null,
+                          $cardsTrainingPrograms->has(7)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(7))
+                        : null,
+                          $cardsTrainingPrograms->has(8)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(8))
+                        : null,
+                          $cardsTrainingPrograms->has(9)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(9))
+                        : null,
+                          $cardsTrainingPrograms->has(10)
+                        ? \App\Http\Resources\TrainigProgramCardResource::make($cardsTrainingPrograms->get(10))
+                        : null,
+                    ],
+            ];
+       
+        $currentProjects = \App\Models\CurrentProject::with('cards')->first();
+        if (!$currentProjects) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Current Projects not found',
+            ], 404);
+        }
+        $cardsCurrentProjects = collect($currentProjects->cards)->keyBy('position');
+        $formatCurrentProjects = [
+            'title_ar' => $currentProjects->title_ar,
+            'title_en' => $currentProjects->title_en,
+            'cards' => [
+                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(1)),
+                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(2)),
+                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(3)),
+                 new \App\Http\Resources\CurrentProjectCardResource($cardsCurrentProjects->get(4)),
+            ],
+        ];
+        $communityImpact = \App\Models\CommunityImpact::with('cards')->first();
+        if (!$communityImpact) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Community Impact not found',
+            ], 404);
+        }
+        $cardsCommunityImpact = collect($communityImpact->cards)->keyBy('position');
+        $formatCommunityImpact = [
+            'title_ar' => $communityImpact->title_ar,
+            'title_en' => $communityImpact->title_en,
+            'description_ar' => $communityImpact->description_ar,
+            'description_en' => $communityImpact->description_en,
+            'images' => $communityImpact->images->map(fn($img) => $this->getImagePathFromDirectory($img->image, 'CommunityImpacts')),
+            'cards' => [
+                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(1)),
+                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(2)),
+                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(3)),
+                 new \App\Http\Resources\ComunityImpactCardResource($cardsCommunityImpact->get(4)),
+            ],
+        ];
+
+        $evaluation = \App\Models\Evaluation::whereNotNull('video')->get();
+        if ($evaluation->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Evaluation not found',
+            ], 404);
+
+        }
+
+
+        $mapEvaluation = $evaluation->map(function ($item) {
+            return [
+                'client_name_en'=> $item->client_name_en,
+                'client_name_ar' => $item->client_name_ar,
+                'image' => $this->getImagePathFromDirectory($item->image, 'evaluations'),
+                'video'=>$this->getVideoPathFromDirectory($item->video, 'evaluations'),
+            ];
+        });
+        
+        $evaluationWithoutVideo = \App\Models\Evaluation::whereNull('video')->get();
+        if ($evaluationWithoutVideo->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Evaluation without video not found',
+            ], 404);
+        }
+
+        // dd($evaluationWithoutVideo);
+        $mapEvaluationWithoutVideo = $evaluationWithoutVideo->map(function ($item) {
+            return [
+                'client_name_en'=> $item->client_name_en,
+                'client_name_ar' => $item->client_name_ar,
+                'image' => $this->getImagePathFromDirectory($item->image, 'evaluations'),
+            ];
+        });
+
+        $instegramBanner = \App\Models\InstegramBroadcast::first();
+        if (!$instegramBanner) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Instagram Banner not found',
+            ], 404);
+        }
+
+        $instegramBannerFirst = \App\Http\Resources\InstegramBannerResource::make($instegramBanner);
+        
+        $instegramBroadcasts = \App\Models\InstegramBroadcast::latest()->take(4)->get();
+        
+        if ($instegramBroadcasts->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Instagram Broadcasts not found',
+            ], 404);
+        }
+        $fourBroadCasts = \App\Http\Resources\FourBroadCastsResource::collection($instegramBroadcasts);
+        
+
+        $landingPageData = [
+            'header' => [
+                'socialMedia' => [
+                    'email' => $socialMedia->mail_link,
+                    'instagram' => $socialMedia->instagram_link,
+                    'whatsApp' => $socialMedia->whatsApp_link,
+                ],
+            ],
+            'heroSection' => $heroSection,
+            'myVision' => $formatMyVision,
+            'myMission' => $formatMyMission,
+            'professionalAppreciation' => $formatProfessionalAppreciation,
+            'adoptedMethodology' => $formatAdoptedMethodology,
+            'trainingPrograms' => $formatTrainingPrograms,
+            'communityImpact' => $formatCommunityImpact,
+            'evaluation' => $mapEvaluation,
+            'evaluationWithoutVideo' => $mapEvaluationWithoutVideo,
+            'liveBanner' => $instegramBannerFirst,
+            'fourBroadCasts' => $fourBroadCasts,
+            'currentProjects' => $formatCurrentProjects,
+            'footer'=>[
+                'contactMe' => [
+                    'email' => $socialMedia->mail_link,
+                    'whatsApp' => $socialMedia->whatsApp_link,
+                    
+                ],
+                'followMe' => [
+                    'facebook' => $socialMedia->facebook_link,
+                    'instagram' => $socialMedia->instagram_link,
+                    'telegram' => $socialMedia->telegram_link,
+                    'tictok' => $socialMedia->tictok_link,
+                    'youtube' => $socialMedia->youtube_link,
+                ],
+            ],
+        ];
+        
+        return response()->json([
+            'status' => 'success',
+            'data' => $landingPageData,
+        ]);
+
+    }
+}

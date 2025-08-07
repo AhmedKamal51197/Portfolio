@@ -133,5 +133,24 @@ class AuthController extends Controller
             'data' => request()->query('token')." : ".request()->query('email')
         ]);
       }
+    /**
+     * Logout user
+     */
+    public function logout()
+    {
+        try {
+            auth('api')->logout(); // يقوم بإلغاء التوكن (جعل التوكن غير صالح)
+            
+            return response()->json([
+                'status' => 'success',
+                'message' => __('User logged out successfully')
+            ]);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json([
+                'status' => 'false',
+                'message' => __('Failed to logout, please try again.')
+            ], 500);
+        }
+    }
 
 }

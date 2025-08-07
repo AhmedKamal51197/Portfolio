@@ -26,7 +26,7 @@ class EvaluationRequest extends FormRequest
             'client_name_en' => ['required', 'string', 'max:255',new NotNumbersOnly()],
             'client_name_ar' => ['required', 'string', 'max:255', new NotNumbersOnly()],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
-            'video' => ['required','file','mimes:mp4,mov,avi,wmv','max:10240'], // 10MB max
+            'video' => ['required','file','mimes:mp4,mov,avi,wmv','max:20240'], // 10MB max
             
         ];
     }

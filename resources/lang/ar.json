@@ -89,7 +89,9 @@
     "Email & token verified successfully you can now reset your password":"تم التحقق من البريد الإلكتروني والرمز بنجاح، يمكنك الآن إعادة تعيين كلمة المرور",
     "Evaluation created successfully":"تم إنشاء التقييم بنجاح",
     "Evaluation updated successfully":"تم تحديث التقييم بنجاح",
-    "Evaluation deleted successfully":"تم حذف التقييم بنجاح"
+    "Evaluation deleted successfully":"تم حذف التقييم بنجاح",
+    "User logged out successfully":"تم تسجيل خروج المستخدم بنجاح",
+    "Failed to logout, please try again.":"فشل تسجيل الخروج، يرجى المحاولة مرة أخرى."
 
 
 

@@ -17,6 +17,7 @@ class TrainingProgramControler extends Controller
     {
         $items = TrainingProgram::with('cards')->get();
 
+
         if ($items->isEmpty()) {
             return $this->success(__('No data found'), data: []);
         }
@@ -39,48 +40,108 @@ class TrainingProgramControler extends Controller
         return $this->success(__('success'), data: new TrainingProgramResource($item));
     }
 
+    // public function store(TrainingProgramRequest $request)
+    // {
+    //     $data = $request->validated();
+
+    //     DB::beginTransaction();
+
+    //     try {
+    //         $item = TrainingProgram::create([
+    //             'title_ar' => $data['title_ar'],
+    //             'title_en' => $data['title_en'],
+    //             'description_ar' => $data['description_ar'],
+    //             'description_en' => $data['description_en'],
+    //         ]);
+
+    //         foreach ($data['cards'] as $index => $card) {
+    //             if ($request->hasFile("cards.$index.icon")) {
+    //                 $card['icon'] = $this->uploadImageToDirectory(
+    //                     $request->file("cards.$index.icon"),
+    //                     'TrainingPrograms'
+    //                 );
+    //             }
+
+    //             $item->cards()->create([
+    //                 'position' => $card['position'],
+    //                 'description_ar' => $card['description_ar'],
+    //                 'description_en' => $card['description_en'],
+    //                 'icon' => $card['icon'],
+    //             ]);
+    //         }
+
+    //         DB::commit();
+
+    //         return $this->success(
+    //             __('Item and cards created successfully'),
+    //             data: new TrainingProgramResource($item->load('cards')),
+    //             status: 201
+    //         );
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return $this->failure(__('An error occurred while processing your request, please try again'), 500);
+    //     }
+    // }
     public function store(TrainingProgramRequest $request)
-    {
-        $data = $request->validated();
+{
+    $data = $request->validated();
 
+   
+
+    try {
         DB::beginTransaction();
+        // 1. إنشاء البرنامج التدريبي الجديد
+        $item = TrainingProgram::create([
+            'title_ar' => $data['title_ar'],
+            'title_en' => $data['title_en'],
+            'description_ar' => $data['description_ar'],
+            'description_en' => $data['description_en'],
+        ]);
 
-        try {
-            $item = TrainingProgram::create([
-                'title_ar' => $data['title_ar'],
-                'title_en' => $data['title_en'],
-                'description_ar' => $data['description_ar'],
-                'description_en' => $data['description_en'],
-            ]);
+        // 2. محاولة جلب كروت قديمة بدون cardable_id حالي
+        $oldCards = ProfessionalAppreciationCard::where('cardable_type', TrainingProgram::class)
+        ->whereNotNull('cardable_id') // أو: ->where('cardable_id', '<>', $item->id)
+        ->get();
 
-            foreach ($data['cards'] as $index => $card) {
-                if ($request->hasFile("cards.$index.icon")) {
-                    $card['icon'] = $this->uploadImageToDirectory(
-                        $request->file("cards.$index.icon"),
-                        'TrainingPrograms'
-                    );
-                }
-
-                $item->cards()->create([
-                    'position' => $card['position'],
-                    'description_ar' => $card['description_ar'],
-                    'description_en' => $card['description_en'],
-                    'icon' => $card['icon'],
+        // 3. نقل الكروت القديمة لهذا البرنامج الجديد (إن وجدت)
+        if ($oldCards->isNotEmpty()) {
+            foreach ($oldCards as $card) {
+                $card->update([
+                    'cardable_id' => $item->id,
                 ]);
             }
-
-            DB::commit();
-
-            return $this->success(
-                __('Item and cards created successfully'),
-                data: new TrainingProgramResource($item->load('cards')),
-                status: 201
-            );
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return $this->failure(__('An error occurred while processing your request, please try again'), 500);
         }
+
+        // 4. إنشاء الكروت الجديدة (إن وجدت)
+        foreach ($data['cards'] as $index => $card) {
+            if ($request->hasFile("cards.$index.icon")) {
+                $card['icon'] = $this->uploadImageToDirectory(
+                    $request->file("cards.$index.icon"),
+                    'TrainingPrograms'
+                );
+            }
+
+            $item->cards()->create([
+                'position' => $card['position'],
+                'description_ar' => $card['description_ar'],
+                'description_en' => $card['description_en'],
+                'icon' => $card['icon'],
+            ]);
+        }
+
+       
+        DB::commit();
+        return $this->success(
+            __('Item and cards created successfully'),
+            data: new TrainingProgramResource($item->load('cards')),
+            status: 201
+        );
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return $this->failure(__('An error occurred while processing your request, please try again'), 500);
     }
+}
+
 
     public function update(TrainingProgramRequest $request, $id)
     {

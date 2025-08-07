@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//landing page route
+Route::get('/landing-page', [\App\Http\Controllers\Api\LandingPageController::class, 'index'])->name('landing-page.index');
 Route::group(["prefix"=>"/hero-section"], function () {
     Route::get('/', [HeroSectionController::class, 'index'])->name('hero-section.index');
     Route::get('/{id}', [HeroSectionController::class, 'show'])->name('hero-section.show');
@@ -131,6 +133,7 @@ Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
 Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);
 Route::post('/reset-password',[AuthController::class,'resetPassword']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
