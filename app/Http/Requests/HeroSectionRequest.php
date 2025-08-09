@@ -27,7 +27,7 @@ class HeroSectionRequest extends FormRequest
             'title_en'=>[ 'required', 'string', 'max:255',new NotNumbersOnly()],
             'description_ar'=>[ 'required', 'string', 'max:1000',new NotNumbersOnly()],
             'description_en'=>[ 'required', 'string', 'max:1000',new NotNumbersOnly()],
-            'image'=>[ 'required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'], // 2MB max size
+            'image'=>[  'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'], // 2MB max size
         ];
     }
 }
