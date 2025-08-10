@@ -56,6 +56,7 @@ Route::group(["prefix"=>"/training-program"], function () {
     // Route::post('/', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'store'])->name('training-program.store');
     Route::put('/{id}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'update'])->name('training-program.update');
     Route::delete('/{itemId}/card/{cardId}', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'destroy'])->name('training-program.destroy');
+    Route::post('/{id}/cards', [\App\Http\Controllers\Api\TrainingProgramControler::class, 'addCard'])->name('training-program.add-card');
     // Add other routes as needed
 });
 Route::group(["prefix"=>"/current-project"], function () {

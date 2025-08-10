@@ -17,6 +17,7 @@ class TrainigProgramCardResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'position' => $this->position,
             'description_ar' => $this->description_ar,
             'description_en' => $this->description_en,
             'icon' => $this->getImagePathFromDirectory($this->icon, 'TrainingPrograms'),

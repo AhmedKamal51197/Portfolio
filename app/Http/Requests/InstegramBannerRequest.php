@@ -31,7 +31,7 @@ class InstegramBannerRequest extends FormRequest
             'banner_description_ar' => 'required|string|max:500',
             'banner_description_en' => 'required|string|max:500',
             'broadcast_link' => 'required|url',
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg,webp|max:600', // Optional image validation
+            'image' => 'mimes:jpeg,png,jpg,gif,svg,webp|max:600', // Optional image validation
         ];
     }
 }

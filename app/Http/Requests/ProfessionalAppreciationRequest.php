@@ -23,7 +23,7 @@ class ProfessionalAppreciationRequest extends FormRequest
             'cards.*.position' => ['required', 'integer', 'in:1,2,3', 'distinct'],
             'cards.*.description_ar' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
             'cards.*.description_en' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
-            'cards.*.icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
+            'cards.*.icon' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
         ];
     }
 

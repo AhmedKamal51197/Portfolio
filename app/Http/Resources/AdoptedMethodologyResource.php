@@ -26,10 +26,10 @@ class AdoptedMethodologyResource extends JsonResource
               'description_en' => $this->description_en,
   
               'cards' => [
-                  'first_card' => new AdoptedMethodologyCardResource($cards->get(1)),
-                  'second_card' => new AdoptedMethodologyCardResource($cards->get(2)),
-                  'third_card' => new AdoptedMethodologyCardResource($cards->get(3)),
-                  'fourth_card' => new AdoptedMethodologyCardResource($cards->get(4)),
+                   new AdoptedMethodologyCardResource($cards->get(1)),
+                   new AdoptedMethodologyCardResource($cards->get(2)),
+                   new AdoptedMethodologyCardResource($cards->get(3)),
+                   new AdoptedMethodologyCardResource($cards->get(4)),
               ],
           ];
     }

@@ -23,17 +23,17 @@ class TrainingProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title_ar' => ['required', 'string', 'max:255', new NotNumbersOnly()],
-            'title_en' => ['required', 'string', 'max:255', new NotNumbersOnly()],
-            'description_ar' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
-            'description_en' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
+            'title_ar' => [ 'string', 'max:255', new NotNumbersOnly()],
+            'title_en' => [ 'string', 'max:255', new NotNumbersOnly()],
+            'description_ar' => [ 'string', 'max:1000', new NotNumbersOnly()],
+            'description_en' => [ 'string', 'max:1000', new NotNumbersOnly()],
     
-            'cards' => ['required', 'array', 'min:1', 'max:10'], // ⬅️ تعديل هنا
+            'cards' => [ 'array', 'min:1', 'max:10'], // ⬅️ تعديل هنا
     
-            'cards.*.position' => ['required', 'integer', 'in:1,2,3,4,5,6,7,8,9,10', 'distinct'],
+            'cards.*.position' => ['required', 'integer' , 'distinct'],
             'cards.*.description_ar' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
             'cards.*.description_en' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
-            'cards.*.icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
+            'cards.*.icon' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
         ];
     }
     public function messages(): array

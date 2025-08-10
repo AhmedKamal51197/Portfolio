@@ -19,10 +19,10 @@ class ComunityImpactResource extends JsonResource
             'title_en' => $this->title_en,
             'images'=> $this->images->map(fn($img) => $this->getImagePathFromDirectory($img->image, 'ComunityImpacts')),
             'cards' => [
-                'first_card' =>  new  ComunityImpactCardResource($cards->get(1)),
-                'second_card'=>  new  ComunityImpactCardResource($cards->get(2)),
-                'third_card' =>  new  ComunityImpactCardResource($cards->get(3)),
-                'fourth_card'=>  new  ComunityImpactCardResource($cards->get(4)),
+                  new  ComunityImpactCardResource($cards->get(1)),
+                  new  ComunityImpactCardResource($cards->get(2)),
+                  new  ComunityImpactCardResource($cards->get(3)),
+                  new  ComunityImpactCardResource($cards->get(4)),
             ],
         ];
     }

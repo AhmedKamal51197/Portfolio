@@ -22,7 +22,7 @@ class CommunityImpactRequest extends FormRequest
      */
     public function rules(): array
     {
-        $imageRules = ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'];
+        $imageRules = [ 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'];
 
         return [
             'title_ar' => ['required', 'string', 'max:255', new NotNumbersOnly()],

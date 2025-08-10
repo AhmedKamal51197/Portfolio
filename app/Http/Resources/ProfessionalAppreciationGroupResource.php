@@ -18,9 +18,9 @@ class ProfessionalAppreciationGroupResource extends JsonResource
               'title_en' => $this->title_en,
   
               'cards' => [
-                  'first_card' => new ProfessionalAppreciationCardResource($cards->get(1)),
-                  'second_card' => new ProfessionalAppreciationCardResource($cards->get(2)),
-                  'third_card' => new ProfessionalAppreciationCardResource($cards->get(3)),
+                   new ProfessionalAppreciationCardResource($cards->get(1)),
+                   new ProfessionalAppreciationCardResource($cards->get(2)),
+                   new ProfessionalAppreciationCardResource($cards->get(3)),
               ],
           ];
     }

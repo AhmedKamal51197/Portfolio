@@ -23,10 +23,10 @@ class CurrentProjectResource extends JsonResource
              'title_en' => $this->title_en,
  
              'cards' => [
-                 'first_card' => new CurrentProjectCardResource($cards->get(1)),
-                 'second_card' => new CurrentProjectCardResource($cards->get(2)),
-                 'third_card' => new CurrentProjectCardResource($cards->get(3)),
-                 'fourth_card' => new CurrentProjectCardResource($cards->get(4)),
+                  new CurrentProjectCardResource($cards->get(1)),
+                  new CurrentProjectCardResource($cards->get(2)),
+                  new CurrentProjectCardResource($cards->get(3)),
+                  new CurrentProjectCardResource($cards->get(4)),
              ],
          ];
     }

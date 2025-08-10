@@ -46,7 +46,7 @@ class FourBroadCastsRequest extends FormRequest
             ],
             'broadcast_link' => 'required|url',
             
-            'image' => 'required|mimes:jpeg,png,jpg,gif,svg,webp|max:600', // Optional image validation
+            'image' => 'mimes:jpeg,png,jpg,gif,svg,webp|max:600', // Optional image validation
             
         ];
     }

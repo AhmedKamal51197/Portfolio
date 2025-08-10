@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddCardRequest;
 use App\Http\Requests\TrainingProgramRequest;
 use App\Http\Resources\TrainingProgramResource;
 use App\Models\ProfessionalAppreciationCard;
@@ -217,6 +218,34 @@ class TrainingProgramControler extends Controller
             return $this->failure(__('No data found'), 404);
         } catch (\Exception $e) {
             DB::rollBack();
+            
+            return $this->failure(__('An error occurred while processing your request, please try again'), 500);
+        }
+    }
+
+    public function addCard($trainingId,AddCardRequest $request)
+    {
+        $cardData = $request->validated();
+        try {
+            // get last position from db 
+            $lastCard = TrainingProgram::findOrFail($trainingId)->cards()->orderBy('position', 'desc')->first();
+            $cardData['position'] = $lastCard ? $lastCard->position + 1 : 1; // Set position to last + 1 or 1 if no cards exist
+            // Check if the training program exists
+            $trainingProgram = TrainingProgram::findOrFail($trainingId);
+            $trainingProgram->cards()->create([
+                'position' => $cardData['position'],
+                'description_ar' => $cardData['description_ar'],
+                'description_en' => $cardData['description_en'],
+                'icon' => $this->uploadImageToDirectory($request->file('icon'), 'TrainingPrograms'),
+            ]);
+            
+
+
+            return $this->success(__('Card added successfully'), status: 200);
+        } catch (ModelNotFoundException $e) {
+            return $this->failure(__('No data found'), 404);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
             return $this->failure(__('An error occurred while processing your request, please try again'), 500);
         }
     }
