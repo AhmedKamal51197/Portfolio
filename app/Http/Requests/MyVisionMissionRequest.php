@@ -28,7 +28,7 @@ class MyVisionMissionRequest extends FormRequest
             'description_ar' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
             'description_en' => ['required', 'string', 'max:1000', new NotNumbersOnly()],
             'type' => ['required', 'in:vision,mission'], // Ensure type is either 'vision' or 'mission'
-            'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'], // 600KB max size
+            'icon' => [ 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'], // 600KB max size
         ];
     }
 }

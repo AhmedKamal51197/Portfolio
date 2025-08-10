@@ -34,7 +34,7 @@ class HeroSectionController extends Controller
         }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
         return $this->success(__('success'),data:new HeroSectionResource($heroSection));
     }
@@ -60,7 +60,7 @@ class HeroSectionController extends Controller
         }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
 
         $data = $request->validated();
@@ -84,7 +84,7 @@ class HeroSectionController extends Controller
         }
         $heroSection = HeroSection::find($id);
         if (!$heroSection) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
         try {
             $this->deleteImageFromDirectory($heroSection->image, 'HeroSection');

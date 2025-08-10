@@ -29,7 +29,7 @@ class MyVisionMissionController extends Controller
         }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
 
         return $this->success(__('success'), data: new MyVisionMissionResource($myVisionMission));
@@ -55,7 +55,7 @@ class MyVisionMissionController extends Controller
         }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
 
         $data = $request->validated();
@@ -77,7 +77,7 @@ class MyVisionMissionController extends Controller
         }
         $myVisionMission = MyVisionMission::find($id);
         if (!$myVisionMission) {
-            return $this->error(__('No data found'), 404);
+            return $this->failure(__('No data found'), 404);
         }
         try {
             $this->deleteImageFromDirectory($myVisionMission->icon, 'MyVisionMission');
