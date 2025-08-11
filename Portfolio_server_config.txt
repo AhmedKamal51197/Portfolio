@@ -1,0 +1,5 @@
+dbname : u423376105_RouidaDB
+db_user: u423376105_Rouida
+pass   : Rouida_project1
+website : mediumpurple-lyrebird-466536.hostingersite.com
+	pass ssh :Ala_3la_3any

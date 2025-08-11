@@ -26,6 +26,6 @@ class AddCardRequest extends FormRequest
             'description_ar' => ['required', 'string', 'max:1000'],
             'description_en' => ['required', 'string', 'max:1000'],
             'icon' => ['required','image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:600'],
-        ];
+        ]; 
     }
 }

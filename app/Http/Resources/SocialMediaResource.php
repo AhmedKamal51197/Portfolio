@@ -18,6 +18,7 @@ class SocialMediaResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'status' => $this->status,
             'name_ar' => $this->name_ar,
             'name_en' => $this->name_en,
             'link' => $this->link,

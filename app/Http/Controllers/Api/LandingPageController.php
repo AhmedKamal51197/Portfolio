@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class LandingPageController extends Controller
 {
     public function index()
-    {   $socialMedia = \App\Models\SocialMedia::where('status',1)->get();
+    {   $socialMedia = \App\Models\SocialMedia::get();
         if ($socialMedia->isEmpty()) {
             return response()->json([
                 'status' => 'error',
