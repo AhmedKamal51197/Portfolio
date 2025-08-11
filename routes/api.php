@@ -130,6 +130,12 @@ Route::group(["prefix"=>"/evaluation-without-video"], function () {
     // Add other routes as needed
 });
 
+Route::group(["prefix"=>"/evaluation-title"], function () {
+    Route::get('/', [\App\Http\Controllers\Api\EvaluationTitleController::class, 'index'])->name('evaluation-title.index');
+    Route::put('/', [\App\Http\Controllers\Api\EvaluationTitleController::class, 'update'])->name('evaluation-title.update');
+    // Add other routes as needed
+});
+
 Route::get('/passwordreset',[AuthController::class,'seeData']);
 Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
 Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);
