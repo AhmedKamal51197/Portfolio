@@ -42,4 +42,21 @@ class SocialMediaController extends Controller
         }
 
     }
+    // update status only 
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => ['required', 'integer', 'in:0,1'], // Assuming status is a boolean field
+        ]);
+
+        try {
+            $socialMedia = \App\Models\SocialMedia::findOrFail($id);
+            $socialMedia->update(['status' => $request->status]);
+            return $this->success(__('Social media status updated successfully'));
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return $this->failure(__('No data found'), 404);
+        } catch (\Exception $e) {
+            return $this->failure(__('An error occurred while processing your request, please try again'), 500);
+        }
+    }
 }

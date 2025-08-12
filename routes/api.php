@@ -110,6 +110,7 @@ Route::group(["prefix"=>"/terms-and-conditions"], function () {
 Route::group(["prefix"=>"/social-media"], function () {
     Route::get('/', [\App\Http\Controllers\Api\SocialMediaController::class, 'index'])->name('social-media.index');
     Route::put('/{id}', [\App\Http\Controllers\Api\SocialMediaController::class, 'update'])->name('social-media.update');
+    Route::put('/{id}/status', [\App\Http\Controllers\Api\SocialMediaController::class, 'updateStatus'])->name('social-media.update-status');
     // Add other routes as needed
 });
 
