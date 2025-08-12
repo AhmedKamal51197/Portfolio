@@ -18,13 +18,16 @@ class EvaluationWithoutController extends Controller
     }
     public function index()
     {
-        $evaluations = Evaluation::paginate(10);
+        $evaluations = Evaluation::whereNull('video')->paginate(10);
+        $pagination = [
+            'last_page' => $evaluations->lastPage(),
+        ];
 
         if ($evaluations->isEmpty()) {
             return $this->failure(__('No data found'), 404);
         }
 
-        return $this->success(__('success'), data: EvaluationWithoutVideo::collection($evaluations));
+        return $this->success(__('success'), data: [$pagination,EvaluationWithoutVideo::collection($evaluations)]);
     }
     public function show($id)
     {

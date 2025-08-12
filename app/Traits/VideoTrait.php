@@ -43,7 +43,7 @@ trait VideoTrait
 
         $videoPath         = "/storage/Videos/$directory/$videoName";
         $fallbackVideoPath = "placeholder_videos/$directory/$defaultVideo";
-
+        dd(file_exists(public_path($videoPath)));
         if ($videoName && $directory && file_exists(public_path($videoPath))) {
             return asset($videoPath);
         } elseif (file_exists($fallbackVideoPath)) {

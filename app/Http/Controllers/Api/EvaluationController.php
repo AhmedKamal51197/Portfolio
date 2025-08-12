@@ -19,12 +19,14 @@ class EvaluationController extends Controller
     public function index()
     {
         $evaluations = Evaluation::whereNotNull('video')->paginate(10);
-
+        $pagination =   [
+            'last_page' => $evaluations->lastPage(),
+        ];
         if ($evaluations->isEmpty()) {
             return $this->failure(__('No data found'), 404);
         }
 
-        return $this->success(__('success'), data: EvaluationsResource::collection($evaluations));
+        return $this->success(__('success'), data: [$pagination,EvaluationsResource::collection($evaluations)]);
     }
     public function show($id)
     {
@@ -42,6 +44,7 @@ class EvaluationController extends Controller
     public function store(EvaluationRequest $request)
     {
         $data = $request->validated();
+        
         try{
             //check if request has image 
             if ($request->hasFile('image')) {
@@ -51,6 +54,7 @@ class EvaluationController extends Controller
             if ($request->hasFile('video')) {
                 $data['video'] = $this->uploadVideoToDirectory($request->file('video'), 'Evaluations');
             }
+            
             $evaluation = Evaluation::create($data);
             return $this->success(__('Evaluation created successfully'), data: new EvaluationsResource($evaluation), status: 201);
         } catch (\Exception $e) {
