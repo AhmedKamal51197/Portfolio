@@ -18,10 +18,13 @@ class MailController extends Controller
     public function index()
     {
         $mails = Mail::paginate(10);
+        $pagination = [
+            'last_page' => $mails->lastPage(),
+        ];
         if ($mails->isEmpty()) {
             return $this->success(__('No data found'), data: []);
         }
-        return $this->success(__('success'), data:MailResource::collection( $mails));
+        return $this->success(__('success'), data:[$pagination,MailResource::collection( $mails)]);
     }
 
     public function store(MailRequest $request)

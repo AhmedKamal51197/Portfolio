@@ -106,8 +106,7 @@ class EmailResetAdminPasswordService
             if($saveToken)
             {
 
-                // dd($url);
-                return $url;
+                return  $token;
             }
        }
 

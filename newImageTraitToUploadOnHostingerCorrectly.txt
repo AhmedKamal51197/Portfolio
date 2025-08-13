@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Traits;
+
+use Illuminate\Support\Str;
+
+trait ImageTrait
+{
+    protected function uploadImageToDirectory($imageFile, $model = '')
+    {
+        $model     = Str::plural($model);
+        $model     = Str::ucfirst($model);
+        $path      = public_path("Images/$model");
+
+        // إنشاء المجلد لو مش موجود
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
+        }
+
+        $imageName = str_replace(' ', '', 'portofolio_' . time() . $imageFile->getClientOriginalName());
+        $imageFile->move($path, $imageName);
+
+        return $imageName;
+    }
+
+    protected function updateModelImage($model, $imageFile, $directory)
+    {
+        if ($model->icon) {
+            $this->deleteImageFromDirectory($model->icon, $directory);
+        } else {
+            $this->deleteImageFromDirectory($model->image, $directory);
+        }
+
+        return $this->uploadImageToDirectory($imageFile, $directory);
+    }
+
+    protected function deleteImageFromDirectory($imageName, $model)
+    {
+        $model = Str::plural($model);
+        $model = Str::ucfirst($model);
+
+        if ($imageName != 'default.png') {
+            $path = public_path("Images/$model/$imageName");
+
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+    }
+
+    protected function getImagePathFromDirectory($imageName = null, $directory = null, $defaultImage = 'default.svg')
+    {
+        $directory = Str::plural($directory);
+        $directory = Str::ucfirst($directory);
+
+        $imagePath         = public_path("Images/$directory/$imageName");
+        $fallbackImagePath = public_path("placeholder_images/$directory/$defaultImage");
+
+        if ($imageName && $directory && file_exists($imagePath)) {
+            return asset("Images/$directory/$imageName");
+        } elseif (file_exists($fallbackImagePath)) {
+            return asset("placeholder_images/$directory/$defaultImage");
+        } else {
+            return asset("placeholder_images/$defaultImage");
+        }
+    }
+}
