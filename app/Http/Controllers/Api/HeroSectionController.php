@@ -72,8 +72,8 @@ class HeroSectionController extends Controller
             $heroSection->update($data);
             return $this->success(__('Hero section updated successfully'), data: new HeroSectionResource($heroSection));
         } catch (\Exception $e) {
-            return $this->failure(__('An error occurred while processing your request please try again'), 500);
-        //  return $this->failure($e->getMessage(), 500);
+           // return $this->failure(__('An error occurred while processing your request please try again'), 500);
+          return $this->failure($e->getMessage(), 500);
         
         }
     }

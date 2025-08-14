@@ -92,6 +92,7 @@ class EmailResetAdminPasswordService
             $checkIfTokenExists = ResetPasswordToken::where('email',$email)->first();
             if($checkIfTokenExists) $checkIfTokenExists->delete();
             // $token = strtoupper(Str::random(4)); // يعيد أحرف عشوائية مثل: A7F2
+            
             do {
                 $token = strtoupper(Str::random(4));
             } while (ResetPasswordToken::where('token', $token)->exists());

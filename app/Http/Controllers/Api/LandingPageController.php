@@ -209,6 +209,7 @@ class LandingPageController extends Controller
 
         $mapEvaluation = $evaluation->map(function ($item) {
             return [
+                'id' => $item->id,
                 'client_name_en'=> $item->client_name_en,
                 'client_name_ar' => $item->client_name_ar,
                 'image' => $this->getImagePathFromDirectory($item->image, 'evaluations'),
@@ -227,9 +228,12 @@ class LandingPageController extends Controller
         // dd($evaluationWithoutVideo);
         $mapEvaluationWithoutVideo = $evaluationWithoutVideo->map(function ($item) {
             return [
+                'id' => $item->id,
                 'client_name_en'=> $item->client_name_en,
                 'client_name_ar' => $item->client_name_ar,
                 'image' => $this->getImagePathFromDirectory($item->image, 'evaluations'),
+                'evaluate_ar'=> $item->evaluate_ar,
+                'evaluate_en'=> $item->evaluate_en,
             ];
         });
 

@@ -88,20 +88,20 @@ Route::group(["prefix"=>"/four-broadcasts"],function(){
 
 });
 
-Route::group(["prefix"=>"/mail"], function () {
+Route::group(['middleware' => 'auth:api',"prefix"=>"/mail"], function () {
     Route::get('/', [\App\Http\Controllers\Api\MailController::class, 'index'])->name('mail.index');
     Route::post('/', [\App\Http\Controllers\Api\MailController::class, 'store'])->name('mail.store');
     Route::delete('/{id}', [\App\Http\Controllers\Api\MailController::class, 'destroy'])->name('mail.destroy');
     // Add other routes as needed
 });
-Route::group(["prefix"=>"/privacy-policy"], function () {
+Route::group(['middleware' => 'auth:api',"prefix"=>"/privacy-policy"], function () {
     Route::get('/', [\App\Http\Controllers\Api\PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
     Route::put('/', [\App\Http\Controllers\Api\PrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
     // Add other routes as needed
 });
 
 //terms and conditions
-Route::group(["prefix"=>"/terms-and-conditions"], function () {
+Route::group(['middleware' => 'auth:api',"prefix"=>"/terms-and-conditions"], function () {
     Route::get('/', [\App\Http\Controllers\Api\TermsConditionsController::class, 'index'])->name('terms-and-conditions.index');
     Route::put('/', [\App\Http\Controllers\Api\TermsConditionsController::class, 'update'])->name('terms-and-conditions.update');
     // Add other routes as needed
@@ -136,7 +136,9 @@ Route::group(["prefix"=>"/evaluation-title"], function () {
     Route::put('/', [\App\Http\Controllers\Api\EvaluationTitleController::class, 'update'])->name('evaluation-title.update');
     // Add other routes as needed
 });
-
+Route::get('/terms-and-conditions', [\App\Http\Controllers\Api\TermsConditionsController::class, 'index'])->name('terms-and-conditions.index');
+Route::get('/privacy-policy', [\App\Http\Controllers\Api\PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
+Route::post('/subscribe',[\App\Http\Controllers\Api\MailController::class,'store'])->name('subscribe.store');
 Route::get('/passwordreset',[AuthController::class,'seeData']);
 Route::post('/forgot-password',[AuthController::class,'forogtPassword']);
 Route::post('/check-reset-password-token',[AuthController::class,'checkResetToken']);

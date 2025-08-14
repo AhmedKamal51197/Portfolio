@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cardable_id');
             $table->string('cardable_type');
             $table->unsignedInteger('position');
-            $table->string('description_ar')->nullable();
-            $table->string('description_en')->nullable();
+            $table->text('description_ar')->nullable();
+            $table->text('description_en')->nullable();
             $table->string('icon')->nullable();
 
             // ✅ Unique index with a short name

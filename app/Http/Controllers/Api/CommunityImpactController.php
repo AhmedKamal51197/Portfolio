@@ -141,7 +141,7 @@ class CommunityImpactController extends Controller
                     $cardData['icon'] = $this->updateModelImage(
                         $card,
                         $request->file("cards.$index.icon"),
-                        'ComunityImpacts'
+                        'ComunityImpactCards'
                     );
                 }
 
@@ -188,7 +188,7 @@ class CommunityImpactController extends Controller
         // Delete associated cards with it's images
         foreach ($item->cards as $card) {
             if ($card->icon) {
-                $this->deleteImageFromDirectory($card->icon, 'CurrentProjects');
+                $this->deleteImageFromDirectory($card->icon, 'ComunityImpactCards');
             }
         }
         $item->cards()->delete();

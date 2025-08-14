@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('all_broadcast_link')->nullable();
             $table->string('banner_title_ar')->nullable();
             $table->string('banner_title_en')->nullable();
-            $table->string('banner_description_ar')->nullable();
-            $table->string('banner_description_en')->nullable();
+            $table->text('banner_description_ar')->nullable();
+            $table->text('banner_description_en')->nullable();
             $table->string('broadcast_link')->nullable();
             $table->string('image')->nullable(); 
             $table->timestamps();
